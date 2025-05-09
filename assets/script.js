@@ -19,3 +19,15 @@ function switchTheme(e) {
 }
 
 toggleSwitch.addEventListener('change', switchTheme, false);
+
+const topNavbar = document.querySelector('#topNavigationBar');
+window.addEventListener('scroll', function () {
+    // style navbar on scroll
+    console.log('Scrolled!', window.scrollY);
+    if(window.scrollY > 0) {
+        topNavbar.classList.add('shadow-sm');
+    }
+    else {
+        topNavbar.classList.remove('shadow-sm');
+    }
+  });
