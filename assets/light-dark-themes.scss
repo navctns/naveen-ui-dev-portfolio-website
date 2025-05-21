@@ -14,7 +14,9 @@
     --bg-color: #161625;
     --heading-color: #818cab;
     --text-color-dark-light-mode: #fafafa;
-
+    .navbar{
+        background-color: var(--bg-color) !important;
+    }
     .navbar .navbar-brand{
         --bs-navbar-brand-color:#e1e1ff;
         --bs-navbar-brand-hover-color:#e1e1ff;
