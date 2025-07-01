@@ -64,3 +64,7 @@
 .navbar {
   background-color: white;
 }/*# sourceMappingURL=custom.css.map */
+
+.card-img-top{
+  height: 15rem;
+}
