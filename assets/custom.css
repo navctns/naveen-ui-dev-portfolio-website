@@ -63,8 +63,8 @@
 
 .navbar {
   background-color: white;
-}/*# sourceMappingURL=custom.css.map */
-
-.card-img-top{
-  height: 15rem;
 }
+
+.instagram-color {
+  color: linear-gradient(115deg, #f9ce34, #ee2a7b, #6228d7);
+}/*# sourceMappingURL=custom.css.map */
