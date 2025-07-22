@@ -31,3 +31,11 @@ window.addEventListener('scroll', function () {
         topNavbar.classList.remove('shadow-sm');
     }
   });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    console.log('theme switch checkbox', document.querySelector('.theme-switch input[type="checkbox"]'));
+    document.querySelector('.theme-switch input[type="checkbox"]').checked = true;
+    document.documentElement.setAttribute('data-theme', 'dark');
+    sunDarkThemeSwitchEl.styles.display = 'none';
+    sunLightThemeSwitchEl.styles.display = 'block';
+  });
