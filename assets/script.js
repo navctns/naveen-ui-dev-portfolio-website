@@ -32,10 +32,10 @@ window.addEventListener('scroll', function () {
     }
   });
 
-  document.addEventListener("DOMContentLoaded", function () {
-    console.log('theme switch checkbox', document.querySelector('.theme-switch input[type="checkbox"]'));
-    document.querySelector('.theme-switch input[type="checkbox"]').checked = true;
-    document.documentElement.setAttribute('data-theme', 'dark');
-    sunDarkThemeSwitchEl.styles.display = 'none';
-    sunLightThemeSwitchEl.styles.display = 'block';
-  });
+//   document.addEventListener("DOMContentLoaded", function () {
+//     console.log('theme switch checkbox', document.querySelector('.theme-switch input[type="checkbox"]'));
+//     document.querySelector('.theme-switch input[type="checkbox"]').checked = true;
+//     document.documentElement.setAttribute('data-theme', 'dark');
+//     sunDarkThemeSwitchEl.styles.display = 'none';
+//     sunLightThemeSwitchEl.styles.display = 'block';
+//   });

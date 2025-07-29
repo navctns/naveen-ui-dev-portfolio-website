@@ -71,3 +71,18 @@ body{
 .instagram-color{
     color: linear-gradient(115deg, #f9ce34, #ee2a7b, #6228d7);
 }
+.w-lg-auto{
+    @media (min-width: 992px) {
+        width: auto !important;
+    }
+}
+@media (max-width: 768px) {
+    .w-sm-100 {
+        width: 100% !important;
+    }
+}
+@media (max-width: 768px) {
+    .d-sm-block {
+        display: block;
+    }
+}
