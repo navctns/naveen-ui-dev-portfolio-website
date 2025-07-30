@@ -1,5 +1,7 @@
 body {
   font-size: 15px;
+  font-family: "inter-regular", sans-serif;
+  line-height: 1.5;
 }
 
 * {
@@ -8,6 +10,10 @@ body {
   padding: 0;
 }
 
+@font-face {
+  font-family: "inter-regular";
+  src: url("./fonts/Inter/static/Inter_18pt-Regular.ttf");
+}
 .banner-text-gradient {
   font-size: 72px;
   background: -webkit-linear-gradient(#9845E8 20%, #33D2FF 55%, #DD5789 100%);
@@ -26,7 +32,7 @@ body {
 }
 @media only screen and (min-device-width: 768px) {
   .project-card--top-img {
-    height: 12rem;
+    height: 14.5rem;
   }
 }
 
