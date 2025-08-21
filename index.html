@@ -7,6 +7,7 @@
       Portfolio Sites, HTML, CSS, Vue, Python</title>
     <meta name="ahrefs-site-verification"
       content="f74a5bcdc2e14ef0235324a069e1def9e4c3601a6601dd13ed4c1dbb2dd4ba69">
+      <!-- <script src="./assets/chat-bot.js"></script> -->
     <script src="https://analytics.ahrefs.com/analytics.js"
       data-key="CfcxAkU+myzdQRXonwJXMw" async></script>
 
@@ -37,6 +38,7 @@
     <link rel="stylesheet" href="./assets/custom.css">
     <link rel="stylesheet" href="./assets/light-dark-themes.css">
     <link rel="stylesheet" href="./assets/header.css">
+    <link rel="stylesheet" href="./assets/chat-bot.css">
     <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
       integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
@@ -98,21 +100,21 @@
               <a class="nav-link" href="#contactMe">Contact</a>
             </li>
             <li class="nav-item">
-              <div class="nav-link border border-primary rounded-3 px-2">
-                Create Your Website
+              <div class="nav-link border border-primary bg-primary text-white rounded-3 px-2">
+                 Contact to Create Your Website
                 <a href="https://wa.me/917034763747?text=Hello%20I%20am%20interested%20in%20your%20services" target="_blank" target="_blank"
               class="ms-2"><i
-                class="fa-brands fa-whatsapp fa-xl text-success"></i></a>
+                class="fa-brands fa-whatsapp fa-xl text-white"></i></a>
                 <a href="https://www.linkedin.com/in/naveen-vijayan-frontend/"
               target="_blank" class="ms-2"><i
-                class="fa-brands fa-linkedin fa-xl icon-animate"></i></a>
+                class="fa-brands fa-linkedin fa-xl icon-animate text-white"></i></a>
             <a href="mailto:naveenvtechdev@gmail.com" target="_blank" target="_blank"
-              class="ms-2"><i class="fa fa-envelope fa-xl"></i></a>
+              class="ms-2"><i class="fa fa-envelope fa-xl text-white"></i></a>
             
             <a href="https://www.instagram.com/naveenv.webdev" target="_blank"
               target="_blank"
               class="ms-2"><i
-                class="fa-brands fa-instagram instagram-color fa-xl"></i></a>
+                class="fa-brands fa-instagram instagram-color fa-xl text-white"></i></a>
               </div>
             </li>
             <li class="d-none d-lg-block">
@@ -138,7 +140,15 @@
       <div class="container py-5">
         <div id="google_translate_element" class="mt-3"></div>
 
-        <div class="display-2 fw-bold py-3 text-center text-start banner-text-gradient">Build your website</div>
+        <div class="display-2 fw-bold py-3 text-center text-start banner-text-gradient">Need to Build your website ?</div>
+        <div class="display-5 fw-bold py-3 text-center text-start banner-text-gradien text-success">
+          <i class="fas"></i>
+          Here is the help
+        </div>
+        <div class="text-center mt-4">
+          <a href="./blogs/importance-of-portfolio-website-in-2025.html" class="border p-2 rounded-2 border-primary d-inline-block text-decoration-none">
+           <i class="fa-brands fa-readme"></i> <span class="fw-bold">Read Now</span>  : Whether you need a website or not, here's what could help you.</a>
+        </div>
         <div class="fw-bold fs-1 mb-4 mt-4 text-primary text-center">Explore Templates</div>
         <div class="fw-bold fs-4 mb-4 text-primar text-center">Personal Portfolio Templates</div>
         <div class="row">
@@ -203,10 +213,14 @@
           </div>
           <div class="col-lg-6">
             <div class="bg-white shadow-lg rounded-3 p-4 mt-5">
-            <video preload="none" autoplay muted loop playsinline class="img-fluid h-auto rounded-lg shadow-lg">
+            <!-- <video preload="none" autoplay muted loop playsinline class="img-fluid h-auto rounded-lg shadow-lg">
               <source src="./assets/videos/web-templates/software-developer-portfolio-website-template.mp4" type="video/mp4">
                 Your browser does not support the video tag.
-              </video>
+              </video> -->
+              <img
+              src="./assets/images/web-templates/personal-portfolio/software-developer-portfolio/software-developer-portfolio.jpg"
+              class="card-img-to img-fluid"
+              alt="Designer modern porfolio template">
               <div class="fs-5 fw-bold text-secondary mb-2 mt-2">Software Developer Portfolio Website template</div>
               <a href="https://website-templates-collection.github.io/simple-dev-portfolio-with-dark-and-light-mode-switch/"
                     class="btn btn-primary rounded-pill mt-auto align-self-start px-4">See Full page Demo</a>
@@ -240,6 +254,44 @@
         </div>
       </div>
      </div>
+     <div class="container py-4">
+     <!-- chatbot icon -->
+              <!-- chat bot panel -->
+           <div id="chatWidget" class="chat-section col-md-6 mx-auto position-fixed bottom-0 end-0 invisible">
+            <div class="d-flex justify-content-end p-3">
+              <button id="closeChat" class="btn btn-sm btn-outline-secondary">&times;</button>
+            </div>
+
+          <!-- Chat messages -->
+          <div id="messages" aria-live="polite"></div>
+
+          <!-- Suggestions -->
+          <div id="suggestions"></div>
+
+          <!-- Composer -->
+          <form id="chatForm" class="bg-white">
+            <input id="chatbotUserInput" type="text" autocomplete="off"
+                  class="form-control w-75"
+                  oninput="setChatbotWaMessage()"
+                  placeholder="Type a message (try: Hi, I want to create a personal portfolio website)">
+            <!-- <button type="submit" class="btn btn-primary">Send</button> -->
+            <a href="https://wa.me/7034763747?text=Hi, I just visited your website" target="_blank" id="chatbotWaSendBtnd"
+            class="btn btn-outline rounded-2 border-2 border-success border btn-primary-outline"><span>
+              <i class="fa-brands fa-whatsapp fa-xl text-success"></i></span> 
+              <span>Send</span></a>
+          </form>
+          
+          <div class="card-header d-flex justify-content-between align-items-center">
+  </div>
+        </div>
+        <button id="chatToggle" 
+        class="btn btn-primary rounded-circl d-flex align-items-center rounded-5 position-fixed bottom-0 end-0 m-3 p-3 shadow">
+        <span class="me-2">Help Desk</span>
+  <!-- 💬 -->
+   <!-- <i class="fa-solid fa-message fa-2x"></i> -->
+   <i class="fa-solid fa-comment-dots fa-2x"></i>
+</button>
+        </div>
     <!-- banner -->
     <div class="container">
 
@@ -1046,5 +1098,6 @@
 <script type="text/javascript"
         src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
 </script>
+<script src="./assets/chat-bot.js" type="text/javascript"></script>
   </body>
 </html>
