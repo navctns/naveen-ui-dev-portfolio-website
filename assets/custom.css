@@ -128,4 +128,8 @@ element {
 .yt-video {
   width: 100% !important;
   height: 18rem !important;
+}
+
+.text-gray {
+  color: gray !important;
 }/*# sourceMappingURL=custom.css.map */
