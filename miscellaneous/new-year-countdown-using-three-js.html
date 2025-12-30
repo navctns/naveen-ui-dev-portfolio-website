@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 3D Countdown</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #2d6a4f;
+            --light-green: #95d5b2;
+            --accent-green: #1b4332;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #ffffff;
+            font-family: 'Arial Black', Gadget, sans-serif;
+        }
+
+        /* Three.js Canvas Background */
+        #three-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        /* Overlay UI */
+        .ui-layer {
+            position: relative;
+            z-index: 10;
+            pointer-events: none; /* Allows mouse to interact with 3D behind */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--primary-green);
+        }
+
+        .header-box {
+            position: absolute;
+            top: 5%;
+            text-align: center;
+        }
+
+        .header-box h2 {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 10px;
+            color: var(--light-green);
+        }
+
+        /* THE MASSIVE TIMER */
+        .timer-display {
+            font-size: clamp(100px, 22vw, 120px);
+            font-weight: 900;
+            line-height: 0.8;
+            display: flex;
+            gap: 10px;
+            filter: drop-shadow(0 10px 20px rgba(45, 106, 79, 0.2));
+        }
+
+        .unit-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .unit-label {
+            font-size: 1.2rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-top: 20px;
+        }
+
+        /* SVG Side Decorations */
+        .side-svg {
+            position: absolute;
+            width: 150px;
+            height: auto;
+            opacity: 0.4;
+            fill: var(--primary-green);
+        }
+        .left-svg { left: 5%; top: 40%; }
+        .right-svg { right: 5%; top: 40%; }
+
+        #celebration-msg {
+            display: none;
+            font-size: clamp(50px, 12vw, 180px);
+            text-align: center;
+            color: var(--accent-green);
+            animation: grow 1s ease-out;
+        }
+
+        @keyframes grow {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="three-canvas"></canvas>
+
+    <div class="ui-layer container-fluid">
+        <svg class="side-svg left-svg" viewBox="0 0 100 100"><polygon points="50,5 61,35 95,35 67,57 78,91 50,70 22,91 33,57 5,35 39,35"/></svg>
+        <svg class="side-svg right-svg" viewBox="0 0 100 100"><polygon points="50,5 61,35 95,35 67,57 78,91 50,70 22,91 33,57 5,35 39,35"/></svg>
+
+        <div class="header-box">
+            <h2>Countdown to</h2>
+            <h1 style="font-weight: 900;">2026</h1>
+        </div>
+
+        <div id="timer-container" class="timer-display">
+            <div class="unit-group"><span id="days">00</span><div class="unit-label">Days</div></div>
+            <span>:</span>
+            <div class="unit-group"><span id="hours">00</span><div class="unit-label">Hrs</div></div>
+            <span>:</span>
+            <div class="unit-group"><span id="mins">00</span><div class="unit-label">Min</div></div>
+            <span>:</span>
+            <div class="unit-group"><span id="secs">00</span><div class="unit-label">Sec</div></div>
+        </div>
+
+        <div id="celebration-msg">HAPPY NEW YEAR<br>2026</div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        // --- THREE.JS BACKGROUND ---
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('three-canvas'), antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        // Create Particle Field
+        const particlesGeometry = new THREE.BufferGeometry();
+        const counts = 1500;
+        const positions = new Float32Array(counts * 3);
+        for(let i=0; i < counts * 3; i++) { positions[i] = (Math.random() - 0.5) * 15; }
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+        const particlesMaterial = new THREE.PointsMaterial({ color: 0x95d5b2, size: 0.05 });
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+
+        camera.position.z = 5;
+
+        // Mouse Interactivity
+        let mouseX = 0;
+        let mouseY = 0;
+        document.addEventListener('mousemove', (event) => {
+            mouseX = (event.clientX / window.innerWidth) - 0.5;
+            mouseY = (event.clientY / window.innerHeight) - 0.5;
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            particlesMesh.rotation.y += 0.001;
+            particlesMesh.rotation.x += 0.001;
+            // Float based on mouse
+            particlesMesh.position.x += (mouseX - particlesMesh.position.x) * 0.05;
+            particlesMesh.position.y += (-mouseY - particlesMesh.position.y) * 0.05;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // --- COUNTDOWN LOGIC ---
+        const targetDate = new THREE.Clock(); // Just using as helper, actually standard Date:
+        const dest = new Date("Jan 1, 2026 00:00:00").getTime();
+        
+        // TEST MODE: Uncomment to see animation in 5 seconds
+        // const dest = new Date().getTime() + 5000;
+
+        const updateTimer = setInterval(() => {
+            const now = new Date().getTime();
+            const diff = dest - now;
+
+            if (diff <= 0) {
+                clearInterval(updateTimer);
+                document.getElementById('timer-container').style.display = 'none';
+                document.getElementById('celebration-msg').style.display = 'block';
+                startCelebration();
+                return;
+            }
+
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = d.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = h.toString().padStart(2, '0');
+            document.getElementById('mins').innerText = m.toString().padStart(2, '0');
+            document.getElementById('secs').innerText = s.toString().padStart(2, '0');
+        }, 1000);
+
+        // --- CELEBRATION ---
+        function startCelebration() {
+            const end = Date.now() + (30 * 1000);
+            const colors = ['#2d6a4f', '#40916c', '#52b788', '#95d5b2'];
+
+            (function frame() {
+                confetti({
+                    particleCount: 3,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: colors
+                });
+                confetti({
+                    particleCount: 3,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: colors
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+
+            // Big Firework Bursts
+            const fireworkInterval = setInterval(() => {
+                if (Date.now() > end) return clearInterval(fireworkInterval);
+                confetti({
+                    particleCount: 100,
+                    startVelocity: 30,
+                    spread: 360,
+                    origin: { x: Math.random(), y: Math.random() - 0.2 },
+                    colors: colors
+                });
+            }, 1000);
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>

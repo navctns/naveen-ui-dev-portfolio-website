@@ -1,0 +1,12 @@
+    New year count down
+    generate a webpage using html,css,js and bootstrap css. page need to contain a count down timer for new year 2026. the timer should be big as the letter size need to be 20-25% of the screen. also need to show a celebration effect animation when it ends. add heading info on top, add some svgs on left and right for making it visually attractive
+
+    make demo
+    make a demo of the animation
+
+    updates on animation
+    make the celebration animation little more lengthy, change the main page according to it, also add some fireworks animation
+
+    3d animation
+
+    generate a webpage using html,css,js and three js. page need to contain a count down timer for new year 2026. the timer should be big as the letter size need to be 20-25% of the screen. also need to show a celebration effect animation when it ends. add heading info on top, add some svgs on left and right for making it visually attractive. make it interactive by adding some 3d effects
