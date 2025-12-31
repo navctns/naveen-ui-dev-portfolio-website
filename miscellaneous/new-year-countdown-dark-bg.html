@@ -83,7 +83,7 @@
             /* The core requirement: Size is ~20% of viewport width. 
                Using clamp to set a minimum and maximum reasonable size. */
             /* font-size: clamp(80px, 18vw, 250px);  */
-            font-size: clamp(80px, 18vw, 120px); 
+            font-size: clamp(40px, 18vw, 60px); 
             line-height: 1;
             display: block;
             
@@ -94,6 +94,16 @@
             
             /* Subtle shadow for depth */
             filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5));
+        }
+        @media(min-width:768px){
+            .timer-display {
+                font-size: clamp(60px, 18vw, 120px);
+            }
+        }
+        @media(min-width:992px){
+            .timer-display {
+                font-size: clamp(80px, 18vw, 120px);
+            }
         }
 
         /* Labels (Days, Hours, etc.) */
