@@ -58,12 +58,22 @@
 
         /* THE MASSIVE TIMER */
         .timer-display {
-            font-size: clamp(100px, 22vw, 120px);
+            font-size: clamp(40px, 22vw, 40px);
             font-weight: 900;
             line-height: 0.8;
             display: flex;
             gap: 10px;
             filter: drop-shadow(0 10px 20px rgba(45, 106, 79, 0.2));
+        }
+        @media(min-width:768px){
+            .timer-display {
+                font-size: clamp(60px, 22vw, 60px);
+            }
+        }
+        @media(min-width:992px){
+            .timer-display {
+                font-size: clamp(100px, 22vw, 120px);
+            }
         }
 
         .unit-group {
